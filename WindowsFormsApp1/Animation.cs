@@ -34,7 +34,7 @@ namespace WindowsFormsApp1
             this.Ticks = animation.TicksPerSecond;
             this.Duration = (float) animation.DurationInTicks;
             var rootNode = new NodeData();
-            this.ReadHeirarchyData(ref rootNode, model.RootNode);
+            this.ReadHeirarchyData(ref rootNode, model.RootNode.Children[0]);
             this.RootNode = rootNode;
             this.ReadMissingBones(animation, animatedModel.Meshes[0]);
             BoneMap = animatedModel.Meshes[0].BoneMap;
@@ -42,6 +42,8 @@ namespace WindowsFormsApp1
 
         public void ReadHeirarchyData(ref NodeData dest, Assimp.Node src)
         {
+            if (src == null)
+                Debug.Assert(false);
             dest.name = src.Name;
             dest.transformation = Form1.ConvertToGlmMat4(src.Transform);
             dest.count = src.ChildCount;

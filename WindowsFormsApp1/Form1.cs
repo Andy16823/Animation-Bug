@@ -18,6 +18,8 @@ using GlmSharp.Swizzle;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Diagnostics;
 using Assimp;
+using System.Runtime.InteropServices;
+using System.Security.Policy;
 
 namespace WindowsFormsApp1
 {
@@ -84,10 +86,17 @@ namespace WindowsFormsApp1
 
             foreach (var mesh in model.Meshes)
             {
-                var meshData = mesh.GetIndicedVertices();
+                var meshData = mesh.GetVertexMesh();
+                var indices = mesh.Indices.ToArray();
+
+                mesh.vao = gl.GenVertexArrays(1);
+                gl.BindVertexArray(mesh.vao);
+
+                mesh.ebo = gl.GenBuffer(1);
+                gl.BindBuffer(OpenGL.ElementArrayBuffer, mesh.ebo);
+                gl.BufferData(OpenGL.ElementArrayBuffer, indices.Length * sizeof(int), indices, OpenGL.DynamicDraw);
 
                 Console.WriteLine("Loading Mesh " + mesh.Name);
-
                 Console.WriteLine("Loading Verticies from " + mesh.Name);
                 mesh.vbo = this.LoadBuffer(meshData.positions, gl, OpenGL.DynamicDraw);
                 Console.WriteLine("Loaded Verticies from " + mesh.Name + " with error " + gl.GetError());
@@ -105,8 +114,26 @@ namespace WindowsFormsApp1
                 Console.WriteLine("Loaded Bone weights from " + mesh.Name + " with error " + gl.GetError());
 
                 Console.WriteLine("Loaded Mesh " + mesh.Name + " with error " + gl.GetError());
-            }
 
+                gl.EnableVertexAttribArray(0);
+                gl.BindBuffer(OpenGL.ArrayBuffer, mesh.vbo);
+                gl.VertexAttribPointer(0, 3, OpenGL.Float, false, 0, 0);
+
+                gl.EnableVertexAttribArray(2);
+                gl.BindBuffer(OpenGL.ArrayBuffer, mesh.tbo);
+                gl.VertexAttribPointer(2, 2, OpenGL.Float, false, 0, 0);
+
+                gl.EnableVertexAttribArray(3);
+                gl.BindBuffer(OpenGL.ArrayBuffer, mesh.bibo);
+                gl.VertexAtrribIPointer(3, 4, OpenGL.Int, 0, 0);
+
+                gl.EnableVertexAttribArray(4);
+                gl.BindBuffer(OpenGL.ArrayBuffer, mesh.bwbo);
+                gl.VertexAttribPointer(4, 4, OpenGL.Float, false, 0, 0);
+
+
+                gl.BindVertexArray(0);
+            }
         }
 
         /// <summary>
@@ -126,32 +153,35 @@ namespace WindowsFormsApp1
                 gl.UniformMatrix4fv(gl.GetUniformLocation(program, "view"), 1, false, v_mat.ToArray());
                 gl.UniformMatrix4fv(gl.GetUniformLocation(program, "model"), 1, false, m_mat.ToArray());
 
-                for(int i = 0; i < animator.Transformations.Count; i++)
+                //animator.Transformations[3] = mat4.Translate(-100, 100, 100);
+
+                int i = 0;
+                foreach (var bmat in animator.Transformations)
                 {
-                    var bmat = animator.Transformations[i];
+                    Console.WriteLine("Sending matrix @index " + i + " " + bmat.ToString());
+                    Console.WriteLine(bmat.m00.ToString() + " " + bmat.m10.ToString() + " " + bmat.m20.ToString() + " " + bmat.m30.ToString());
+                    Console.WriteLine(bmat.m01.ToString() + " " + bmat.m11.ToString() + " " + bmat.m21.ToString() + " " + bmat.m31.ToString());
+                    Console.WriteLine(bmat.m02.ToString() + " " + bmat.m12.ToString() + " " + bmat.m22.ToString() + " " + bmat.m32.ToString());
+                    Console.WriteLine(bmat.m03.ToString() + " " + bmat.m13.ToString() + " " + bmat.m23.ToString() + " " + bmat.m33.ToString());
                     gl.UniformMatrix4fv(gl.GetUniformLocation(program, "finalBonesMatrices[" + i.ToString() + "]"), 1, false, bmat.ToArray());
+                    i++;
                 }
+
+                //for (int i = 0; i < animator.Transformations.Count; i++)
+                //{
+                //    var bmat = animator.Transformations[i];
+                //    gl.UniformMatrix4fv(gl.GetUniformLocation(program, "finalBonesMatrices[" + i.ToString() + "]"), 1, false, bmat.ToArray());
+                //}
 
                 gl.BindTexture(NetGL.OpenGL.Texture2D, mesh.Material.DiffuseMapRenderID);
                 gl.Uniform1I(gl.GetUniformLocation(program, "textureSampler"), 0);
 
-                gl.EnableVertexAttribArray(0);
-                gl.BindBuffer(OpenGL.ArrayBuffer, mesh.vbo);
-                gl.VertexAttribPointer(0, 3, OpenGL.Float, false, 0, 0);
+                gl.BindVertexArray(mesh.vao);
 
-                gl.EnableVertexAttribArray(2);
-                gl.BindBuffer(OpenGL.ArrayBuffer, mesh.tbo);
-                gl.VertexAttribPointer(2, 2, OpenGL.Float, false, 0, 0);
+                gl.BindBuffer(OpenGL.ElementArrayBuffer, mesh.ebo);  // Bind the index buffer
+                gl.DrawElements(OpenGL.Triangles, mesh.Indices.Length, OpenGL.UnsignedInt);
 
-                gl.EnableVertexAttribArray(3);
-                gl.BindBuffer(OpenGL.ArrayBuffer, mesh.bibo);
-                gl.VertexAttribPointer(3, 4, OpenGL.Int, false, 0, 0);
-
-                gl.EnableVertexAttribArray(4);
-                gl.BindBuffer(OpenGL.ArrayBuffer, mesh.bwbo);
-                gl.VertexAttribPointer(4, 4, OpenGL.Float, false, 0, 0);
-
-                gl.DrawArrays(OpenGL.Triangles, 0, (mesh.Indices.Length));
+                //gl.DrawArrays(OpenGL.Triangles, 0, (mesh.Indices.Length));
             }
         }
 
@@ -211,10 +241,10 @@ namespace WindowsFormsApp1
         {
             //loading the model
             String modelspath = new System.IO.FileInfo(System.Reflection.Assembly.GetEntryAssembly().Location).Directory + "\\Models";
-            this.animatedModel = AnimatedModel.LoadModel(modelspath + "\\Animation\\Human.fbx");
+            this.animatedModel = AnimatedModel.LoadModel(modelspath + "\\Vampire\\vampire.dae");
 
             //create an animator and load an animation
-            animator = new Animator(animatedModel.Animations[5]);
+            animator = new Animator(animatedModel.Animations[0]);
 
             //Creating the shaders
             string vertexShaderCode = @"
@@ -323,7 +353,7 @@ namespace WindowsFormsApp1
                 lastFrame = lnow;
 
                 //Update the animation
-                animator.UpdateAnimation(0.5f);
+                animator.UpdateAnimation(0.01f);
 
                 gl.Clear(NetGL.OpenGL.ColorBufferBit | NetGL.OpenGL.DepthBufferBit);
 
@@ -332,7 +362,7 @@ namespace WindowsFormsApp1
 
                 mat4 mt_mat = mat4.Translate(new vec3(0f, -15.0f, -50f));
                 mat4 mr_mat = mat4.RotateX(-1.5f) * mat4.RotateY(0f) * mat4.RotateZ(3f);
-                mat4 ms_mat = mat4.Scale(new vec3(0.2f, 0.2f, 0.2f));
+                mat4 ms_mat = mat4.Scale(new vec3(0.1f, 0.1f, 0.1f));
                 mat4 m_mat = mt_mat * mr_mat * ms_mat;
 
                 //Render the model

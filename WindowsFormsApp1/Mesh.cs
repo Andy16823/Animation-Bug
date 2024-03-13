@@ -1,4 +1,5 @@
-﻿using GlmSharp;
+﻿using Assimp;
+using GlmSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,6 +35,9 @@ namespace WindowsFormsApp1
         public int nbo { get; set; }
         public int bibo { get; set; }
         public int bwbo { get; set; }
+        public int vao { get; set; }
+        public int vsize { get; set; }
+        public int ebo { get; set; }
 
         public Mesh()
         {
@@ -82,6 +86,54 @@ namespace WindowsFormsApp1
             }
 
             return meshData;
+        }
+
+        public VertexMeshData GetVertexMesh()
+        {
+            var meshData = new VertexMeshData();
+            meshData.positions = new float[Vertices.Count * 3];
+            meshData.texcords = new float[Vertices.Count * 2];
+            meshData.boneIDs = new int[Vertices.Count * 4];
+            meshData.boneWeights = new float[Vertices.Count * 4];
+
+            for (int i = 0; i < Vertices.Count; i++)
+            {
+                var vertex = Vertices[i];
+
+                var positionIndex = i * 3;
+                meshData.positions[positionIndex] = vertex.position.x;
+                meshData.positions[positionIndex + 1] = vertex.position.y;
+                meshData.positions[positionIndex + 2] = vertex.position.z;
+
+                var texCoordIndex = i * 2;
+                meshData.texcords[texCoordIndex] = vertex.texcords.x;
+                meshData.texcords[texCoordIndex + 1] = vertex.texcords.y;
+
+                var boneIdIndex = i * 4;
+                meshData.boneIDs[boneIdIndex] = vertex.boneids[0];
+                meshData.boneIDs[boneIdIndex + 1] = vertex.boneids[1];
+                meshData.boneIDs[boneIdIndex + 2] = vertex.boneids[2];
+                meshData.boneIDs[boneIdIndex + 3] = vertex.boneids[3];
+
+                var boneWeightIndex = i * 4;
+                meshData.boneWeights[boneWeightIndex] = vertex.boneweights[0];
+                meshData.boneWeights[boneWeightIndex + 1] = vertex.boneweights[1];
+                meshData.boneWeights[boneWeightIndex + 2] = vertex.boneweights[2];
+                meshData.boneWeights[boneWeightIndex + 3] = vertex.boneweights[3];
+            }
+
+            return meshData;
+        }
+
+        public Vertex[] GetIndexedVertices()
+        {
+            var vertices = new Vertex[Indices.Length];
+            for (int i = 0; i < Indices.Length; i++)
+            {
+                var index = Indices[i];
+                vertices[i] = Vertices[index];
+            }
+            return vertices;
         }
 
     }

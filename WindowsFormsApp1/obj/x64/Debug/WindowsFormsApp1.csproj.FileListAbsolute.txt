@@ -234,3 +234,54 @@ E:\NetGL Examples\ModernGL Animations\WindowsFormsApp1\bin\x64\Debug\Genesis.pdb
 E:\NetGL Examples\ModernGL Animations\WindowsFormsApp1\bin\x64\Debug\Genesis.xml
 E:\NetGL Examples\ModernGL Animations\WindowsFormsApp1\bin\x64\Debug\Newtonsoft.Json.xml
 E:\NetGL Examples\ModernGL Animations\WindowsFormsApp1\bin\x64\Debug\BulletSharp.dll.config
+E:\NetGL Examples\ModernGL Animations\WindowsFormsApp1\bin\x64\Debug\Models\Vampire\textures\Vampire_diffuse.png
+E:\NetGL Examples\ModernGL Animations\WindowsFormsApp1\bin\x64\Debug\Models\Vampire\textures\Vampire_emission.png
+E:\NetGL Examples\ModernGL Animations\WindowsFormsApp1\bin\x64\Debug\Models\Vampire\textures\Vampire_normal.png
+E:\NetGL Examples\ModernGL Animations\WindowsFormsApp1\bin\x64\Debug\Models\Vampire\textures\Vampire_specular.png
+E:\NetGL Examples\ModernGL Animations\WindowsFormsApp1\bin\x64\Debug\Models\Vampire\vampire.dae
+E:\NetGL Examples\ModernGL Animations - Kopie\WindowsFormsApp1\bin\x64\Debug\Models\Animation\Human.fbm\Ch15_1001_Diffuse.png
+E:\NetGL Examples\ModernGL Animations - Kopie\WindowsFormsApp1\bin\x64\Debug\Models\Animation\Human.fbm\Ch15_1001_Glossiness.png
+E:\NetGL Examples\ModernGL Animations - Kopie\WindowsFormsApp1\bin\x64\Debug\Models\Animation\Human.fbm\Ch15_1001_Normal.png
+E:\NetGL Examples\ModernGL Animations - Kopie\WindowsFormsApp1\bin\x64\Debug\Models\Animation\Human.fbm\Ch15_1001_Specular.png
+E:\NetGL Examples\ModernGL Animations - Kopie\WindowsFormsApp1\bin\x64\Debug\Models\Animation\Human.fbm\Ch15_1002_Emissive.png
+E:\NetGL Examples\ModernGL Animations - Kopie\WindowsFormsApp1\bin\x64\Debug\Models\Animation\Human.fbm\Ch15_1002_Glossiness.png
+E:\NetGL Examples\ModernGL Animations - Kopie\WindowsFormsApp1\bin\x64\Debug\Models\Animation\Human.fbm\Ch15_1002_Normal.png
+E:\NetGL Examples\ModernGL Animations - Kopie\WindowsFormsApp1\bin\x64\Debug\Models\Animation\Human.fbm\Ch15_1002_Specular.png
+E:\NetGL Examples\ModernGL Animations - Kopie\WindowsFormsApp1\bin\x64\Debug\Models\Vampire\textures\Vampire_diffuse.png
+E:\NetGL Examples\ModernGL Animations - Kopie\WindowsFormsApp1\bin\x64\Debug\Models\Vampire\textures\Vampire_emission.png
+E:\NetGL Examples\ModernGL Animations - Kopie\WindowsFormsApp1\bin\x64\Debug\Models\Vampire\textures\Vampire_normal.png
+E:\NetGL Examples\ModernGL Animations - Kopie\WindowsFormsApp1\bin\x64\Debug\Models\Vampire\textures\Vampire_specular.png
+E:\NetGL Examples\ModernGL Animations - Kopie\WindowsFormsApp1\bin\x64\Debug\Models\Animation\Human.fbx
+E:\NetGL Examples\ModernGL Animations - Kopie\WindowsFormsApp1\bin\x64\Debug\Models\Vampire\vampire.dae
+E:\NetGL Examples\ModernGL Animations - Kopie\WindowsFormsApp1\bin\x64\Debug\Models\Animation\Human.fbm\Ch15_1002_Diffuse.png
+E:\NetGL Examples\ModernGL Animations - Kopie\WindowsFormsApp1\bin\x64\Debug\WindowsFormsApp1.exe.config
+E:\NetGL Examples\ModernGL Animations - Kopie\WindowsFormsApp1\bin\x64\Debug\WindowsFormsApp1.exe
+E:\NetGL Examples\ModernGL Animations - Kopie\WindowsFormsApp1\bin\x64\Debug\WindowsFormsApp1.pdb
+E:\NetGL Examples\ModernGL Animations - Kopie\WindowsFormsApp1\bin\x64\Debug\AssimpNet.dll
+E:\NetGL Examples\ModernGL Animations - Kopie\WindowsFormsApp1\bin\x64\Debug\Genesis.dll
+E:\NetGL Examples\ModernGL Animations - Kopie\WindowsFormsApp1\bin\x64\Debug\GenesisMath.dll
+E:\NetGL Examples\ModernGL Animations - Kopie\WindowsFormsApp1\bin\x64\Debug\GlmSharp.dll
+E:\NetGL Examples\ModernGL Animations - Kopie\WindowsFormsApp1\bin\x64\Debug\NetGL.dll
+E:\NetGL Examples\ModernGL Animations - Kopie\WindowsFormsApp1\bin\x64\Debug\OpenObjectLoader.dll
+E:\NetGL Examples\ModernGL Animations - Kopie\WindowsFormsApp1\bin\x64\Debug\Newtonsoft.Json.dll
+E:\NetGL Examples\ModernGL Animations - Kopie\WindowsFormsApp1\bin\x64\Debug\BulletSharp.dll
+E:\NetGL Examples\ModernGL Animations - Kopie\WindowsFormsApp1\bin\x64\Debug\AssimpNet.xml
+E:\NetGL Examples\ModernGL Animations - Kopie\WindowsFormsApp1\bin\x64\Debug\Genesis.pdb
+E:\NetGL Examples\ModernGL Animations - Kopie\WindowsFormsApp1\bin\x64\Debug\Genesis.xml
+E:\NetGL Examples\ModernGL Animations - Kopie\WindowsFormsApp1\bin\x64\Debug\GenesisMath.pdb
+E:\NetGL Examples\ModernGL Animations - Kopie\WindowsFormsApp1\bin\x64\Debug\GlmSharp.xml
+E:\NetGL Examples\ModernGL Animations - Kopie\WindowsFormsApp1\bin\x64\Debug\NetGL.pdb
+E:\NetGL Examples\ModernGL Animations - Kopie\WindowsFormsApp1\bin\x64\Debug\OpenObjectLoader.pdb
+E:\NetGL Examples\ModernGL Animations - Kopie\WindowsFormsApp1\bin\x64\Debug\Newtonsoft.Json.xml
+E:\NetGL Examples\ModernGL Animations - Kopie\WindowsFormsApp1\bin\x64\Debug\BulletSharp.dll.config
+E:\NetGL Examples\ModernGL Animations - Kopie\WindowsFormsApp1\obj\x64\Debug\WindowsFormsApp1.csproj.AssemblyReference.cache
+E:\NetGL Examples\ModernGL Animations - Kopie\WindowsFormsApp1\obj\x64\Debug\WindowsFormsApp1.Form1.resources
+E:\NetGL Examples\ModernGL Animations - Kopie\WindowsFormsApp1\obj\x64\Debug\WindowsFormsApp1.Properties.Resources.resources
+E:\NetGL Examples\ModernGL Animations - Kopie\WindowsFormsApp1\obj\x64\Debug\WindowsFormsApp1.csproj.GenerateResource.cache
+E:\NetGL Examples\ModernGL Animations - Kopie\WindowsFormsApp1\obj\x64\Debug\WindowsFormsApp1.csproj.CoreCompileInputs.cache
+E:\NetGL Examples\ModernGL Animations - Kopie\WindowsFormsApp1\obj\x64\Debug\WindowsFormsApp1.csproj.CopyComplete
+E:\NetGL Examples\ModernGL Animations - Kopie\WindowsFormsApp1\obj\x64\Debug\WindowsFormsApp1.exe
+E:\NetGL Examples\ModernGL Animations - Kopie\WindowsFormsApp1\obj\x64\Debug\WindowsFormsApp1.pdb
+E:\NetGL Examples\ModernGL Animations - Kopie\WindowsFormsApp1\bin\x64\Debug\Models\SimpleAnimation\anim.fbm\netgl_texture.png
+E:\NetGL Examples\ModernGL Animations - Kopie\WindowsFormsApp1\bin\x64\Debug\Models\SimpleAnimation\anim.fbm\netgl_texture_b.png
+E:\NetGL Examples\ModernGL Animations - Kopie\WindowsFormsApp1\bin\x64\Debug\Models\SimpleAnimation\anim.fbx

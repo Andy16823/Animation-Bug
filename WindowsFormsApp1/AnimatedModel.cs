@@ -15,6 +15,7 @@ namespace WindowsFormsApp1
         public List<Material> Materials { get; set; }
         public List<Mesh> Meshes { get; set; }
         public List<Animation> Animations { get; set; }
+        public int VAO { get; set; }
 
         public AnimatedModel()
         {
@@ -55,7 +56,7 @@ namespace WindowsFormsApp1
             Assimp.Scene model;
             Assimp.AssimpContext importer = new Assimp.AssimpContext();
             importer.SetConfig(new Assimp.Configs.NormalSmoothingAngleConfig(66.0f));
-            model = importer.ImportFile(filename, Assimp.PostProcessPreset.TargetRealTimeMaximumQuality | Assimp.PostProcessSteps.Triangulate);
+            model = importer.ImportFile(filename, Assimp.PostProcessSteps.Triangulate | Assimp.PostProcessSteps.CalculateTangentSpace | Assimp.PostProcessSteps.JoinIdenticalVertices);
 
             var animatedModel = new AnimatedModel();
             //Load the materials
@@ -84,6 +85,7 @@ namespace WindowsFormsApp1
                 {
                     Vertex vertex = new Vertex();
                     vertex.position = new vec3(aMesh.Vertices[i].X, aMesh.Vertices[i].Z, aMesh.Vertices[i].Y);
+                    vertex.normal = new vec3();
                     if (aMesh.TextureCoordinateChannels[0] != null)
                     {
                         vertex.texcords = new vec2(aMesh.TextureCoordinateChannels[0][i].X, aMesh.TextureCoordinateChannels[0][i].Y);
@@ -132,6 +134,7 @@ namespace WindowsFormsApp1
                     break;
                 }
             }
+            Debug.Assert(true);
         }
 
         public static void ExtractBoneWeights(Mesh mesh, Assimp.Mesh aimesh, Assimp.Scene model)

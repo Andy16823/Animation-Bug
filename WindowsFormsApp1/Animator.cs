@@ -1,6 +1,7 @@
 ﻿using GlmSharp;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,7 +18,7 @@ namespace WindowsFormsApp1
         public Animator(Animation animation) 
         { 
             this.CurrentAnimation = animation;
-            this.Transformations = new List<mat4>(100);
+            this.Transformations = new List<mat4>();
             for (int i = 0; i < 100; i++)
             {
                 this.Transformations.Add(mat4.Identity);
@@ -38,13 +39,20 @@ namespace WindowsFormsApp1
 
         public void CalculateBoneTransformation(NodeData node, mat4 parentTransform) 
         {
+            var nodeName = node.name;
             var transform = node.transformation;
-            Bone bone = CurrentAnimation.FindBone(node.name);
+            Bone bone = CurrentAnimation.FindBone(nodeName);
+
             if (bone != null)
             {
                 bone.Update(CurrentTime);
                 transform = bone.Transform;
             }
+
+            //if (glm.IsNaN(transform.m00))
+            //{
+            //    Debug.Assert(false);
+            //}
 
             mat4 globalTransformation = parentTransform * transform;
             var boneMap = CurrentAnimation.BoneMap;
